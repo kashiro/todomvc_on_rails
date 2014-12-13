@@ -1,6 +1,7 @@
 class TodosController < ApplicationController
 
   def index
+    @todos = Todo
   end
 
   def toggle
