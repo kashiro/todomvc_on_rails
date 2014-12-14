@@ -4,6 +4,11 @@ class TodosController < ApplicationController
     @todos = Todo
   end
 
+  def create
+    @todo = Todo.new(todo_params)
+    @todo.save
+  end
+
   def toggle
   end
 
@@ -18,5 +23,11 @@ class TodosController < ApplicationController
 
   def destroy_completed
   end
+
+  private
+
+    def todo_params
+      params.require(:todo).permit(:title, :completed)
+    end
 
 end

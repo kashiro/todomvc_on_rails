@@ -14,6 +14,13 @@
     <% end %>
     <label for="toggle-all">Mark all as complete</label>
     <ul id="todo-list">
+      <%# @todo.allがActiveRecord_Relation 等、コレクションであり %>
+      <%# 同階層に単数形のパーシャル（_todo.html.erb）がある時にeachを書かずに回せる %>
+      <%# 読み込みファイル側ではtodoでitemを読み込める %>
+      <%# もし個別にやるなら %>
+      <%# @todos.each do |item| %>
+      <%# render "todo", todo: item %>
+      <%# end %>
       <%= render @todos.all %>
     </ul>
   </section>
