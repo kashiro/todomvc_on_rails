@@ -13,6 +13,7 @@ class TodosController < ApplicationController
   end
 
   def toggle_all
+    # sqlにbooleanはなく、0 or 1 か 文字列のf or tで代用する
     Todo.update_all(completed: params[:completed] ? 't' : 'f')
     @todos = Todo.all
   end
@@ -24,6 +25,11 @@ class TodosController < ApplicationController
   end
 
   def destroy_completed
+  end
+
+  def destroy
+    @todo = Todo.find(params[:id])
+    @todo.destroy
   end
 
   private
