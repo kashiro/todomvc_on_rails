@@ -1,5 +1,8 @@
 class TodosController < ApplicationController
 
+  # get post以外は_methodパラメータにdelete等メソッドが格納されて
+  # 送信されてくるので実際にdeleteやcreateメソッドが叩かれているわけではない
+
   def index
     @todos = Todo
   end
@@ -7,6 +10,11 @@ class TodosController < ApplicationController
   def create
     @todo = Todo.new(todo_params)
     @todo.save
+  end
+
+  def update
+    @todo = Todo.find(params[:id])
+    @todo.update(todo_params)
   end
 
   def toggle
