@@ -13,6 +13,8 @@ class TodosController < ApplicationController
   end
 
   def toggle_all
+    Todo.update_all(completed: params[:completed] ? 't' : 'f')
+    @todos = Todo.all
   end
 
   def active
