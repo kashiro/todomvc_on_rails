@@ -18,6 +18,8 @@ class TodosController < ApplicationController
   end
 
   def toggle
+    @todo = Todo.find(params[:id])
+    @todo.toggle!(:completed)
   end
 
   def toggle_all
