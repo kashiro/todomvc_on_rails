@@ -35,6 +35,12 @@ class TodosController < ApplicationController
   end
 
   def destroy_completed
+    @todos_for_destruction = Todo.completed.all
+    render "destroy_completed"
+
+    # 先にレンダリングさせておかないと、viewで参照する@todos_for_destructionの中身が空になってしまう
+
+    Todo.completed.destroy_all
   end
 
   def destroy
