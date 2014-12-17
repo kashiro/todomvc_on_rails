@@ -29,16 +29,22 @@ class TodosController < ApplicationController
   end
 
   def active
+    @todos = Todo.active
+    set_current_filter(:active)
+    render :index
   end
 
   def completed
+    @todos = Todo.completed
+    set_current_filter(:completed)
+    render :index
   end
 
   def destroy_completed
     @todos_for_destruction = Todo.completed.all
-    render "destroy_completed"
 
     # 先にレンダリングさせておかないと、viewで参照する@todos_for_destructionの中身が空になってしまう
+    render "destroy_completed"
 
     Todo.completed.destroy_all
   end
@@ -52,6 +58,14 @@ class TodosController < ApplicationController
 
     def todo_params
       params.require(:todo).permit(:title, :completed)
+    end
+
+    def set_current_filter(filter)
+      @current_filter = filter
+    end
+
+    def current_filter
+      @current_filter
     end
 
 end
