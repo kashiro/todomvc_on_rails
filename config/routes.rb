@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root to: "todos#index"
 
-  resources :todos do
+  resources :todos, :except => [:index, :show, :new, :edit] do
     member do
       post :toggle
     end
